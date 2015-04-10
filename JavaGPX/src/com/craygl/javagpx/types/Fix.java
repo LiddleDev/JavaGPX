@@ -23,4 +23,20 @@ public enum Fix {
 		}
 		return null;
 	}
+
+	public static Fix getTypeFromString(String string) {
+		switch (string) {
+		case "none":
+			return NONE;
+		case "2d":
+			return _2D;
+		case "3d":
+			return _3D;
+		case "dgps":
+			return DGPS;
+		case "pps":
+			return PPS;
+		}
+		return null;
+	}
 }
