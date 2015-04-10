@@ -1,11 +1,6 @@
 package com.craygl.javagpx.types;
 
 public class Person {
-	/*
-	 * <name> xsd:string </name> [0..1] ?
-<email> emailType </email> [0..1] ?
-<link> linkType </link> [0..1] ?
-	 */
 	
 	private String name;
 	private Email email;

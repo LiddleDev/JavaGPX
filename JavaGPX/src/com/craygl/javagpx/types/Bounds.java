@@ -1,11 +1,7 @@
 package com.craygl.javagpx.types;
 
 public class Bounds {
-	/*minlat="latitudeType [1] ?"
-minlon="longitudeType [1] ?"
-maxlat="latitudeType [1] ?"
-maxlon="longitudeType [1] ?"/>*/
-	
+
 	private Double minlat;
 	private Double minlon;
 	private Double maxlat;

@@ -3,9 +3,6 @@ package com.craygl.javagpx.types;
 import java.net.URI;
 
 public class Link {
-	/*href="xsd:anyURI [1] ?"> 
-<text> xsd:string </text> [0..1] ?
-<type> xsd:string </type> [0..1] ?*/
 	
 	private URI href;
 	private String text;

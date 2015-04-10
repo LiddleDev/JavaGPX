@@ -4,27 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Waypoint {
-	/*lat="latitudeType [1] ?"
-lon="longitudeType [1] ?"> 
-<ele> xsd:decimal </ele> [0..1] ?
-<time> xsd:dateTime </time> [0..1] ?
-<magvar> degreesType </magvar> [0..1] ?
-<geoidheight> xsd:decimal </geoidheight> [0..1] ?
-<name> xsd:string </name> [0..1] ?
-<cmt> xsd:string </cmt> [0..1] ?
-<desc> xsd:string </desc> [0..1] ?
-<src> xsd:string </src> [0..1] ?
-<link> linkType </link> [0..*] ?
-<sym> xsd:string </sym> [0..1] ?
-<type> xsd:string </type> [0..1] ?
-<fix> fixType </fix> [0..1] ?
-<sat> xsd:nonNegativeInteger </sat> [0..1] ?
-<hdop> xsd:decimal </hdop> [0..1] ?
-<vdop> xsd:decimal </vdop> [0..1] ?
-<pdop> xsd:decimal </pdop> [0..1] ?
-<ageofdgpsdata> xsd:decimal </ageofdgpsdata> [0..1] ?
-<dgpsid> dgpsStationType </dgpsid> [0..1] ?
-<extensions> extensionsType </extensions> [0..1] ?*/
 	
 	private Double lat;
 	private Double lon;
