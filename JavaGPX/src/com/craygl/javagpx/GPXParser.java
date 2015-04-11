@@ -524,12 +524,7 @@ public class GPXParser {
 	}
 	
 	private static Link parseLink(Node node) throws InvalidGPXException {
-		/*
-		href="xsd:anyURI [1] ?"> 
-		<text> xsd:string </text> [0..1] ?
-		<type> xsd:string </type> [0..1] ?
-		 */
-		
+
 		if (!node.getNodeName().equals(GPXConstants.LINK_NODE)) {
 			return null;
 		}
