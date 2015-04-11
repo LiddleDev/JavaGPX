@@ -6,7 +6,7 @@ import java.util.Date;
 public class Copyright {
 	
 	private String author;
-	private Date year;
+	private Integer year;
 	private URI license;
 	
 	public Copyright(String author) {
@@ -21,11 +21,11 @@ public class Copyright {
 		this.author = author;
 	}
 
-	public Date getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(Date year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 

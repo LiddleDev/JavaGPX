@@ -3,6 +3,7 @@ package com.craygl.javagpx;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -102,22 +103,334 @@ public class GPXParser {
 		}
 	}
 
-	private static Track parseTrack(Node currentNode) {
-		// TODO Auto-generated method stub
-		return null;
+	private static Track parseTrack(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.TRK_NODE)) {
+			return null;
+		}
+		
+		Track track = new Track();
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.NAME_NODE:
+				track.setName(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.CMT_NODE:
+				track.setCmt(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.DESC_NODE:
+				track.setDesc(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.SRC_NODE:
+				track.setSrc(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.LINK_NODE:
+				Link link = parseLink(currentNode);
+				if (link != null) {
+					track.addLink(link);
+				}
+				break;
+			case GPXConstants.NUMBER_NODE:
+				track.setNumber(getIntegerFromNode(currentNode));
+				break;
+			case GPXConstants.TYPE_NODE:
+				track.setType(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.EXTENSIONS_NODE:
+				track.setExtensions(new Extensions(currentNode));
+				break;
+			case GPXConstants.TRKSEG_NODE:
+				TrackSegment trackSegment = parseTrackSegment(currentNode);
+				if (trackSegment != null) {
+					track.addTrackSegment(trackSegment);
+				}
+				break;
+			}
+		}
+		
+		return track;
 	}
 
-	private static Route parseRoute(Node currentNode) {
-		// TODO Auto-generated method stub
-		return null;
+	private static TrackSegment parseTrackSegment(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.TRKSEG_NODE)) {
+			return null;
+		}
+		
+		TrackSegment trackSegment = new TrackSegment();
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.TRKPT_NODE:
+				Waypoint waypoint = parseWaypoint(currentNode);
+				if (waypoint != null) {
+					trackSegment.addWaypoint(waypoint);
+				}
+				break;
+			case GPXConstants.EXTENSIONS_NODE:
+				trackSegment.setExtensions(new Extensions(currentNode));
+				break;
+			}
+		}
+		
+		return trackSegment;
 	}
 
-	private static Metadata parseMetadata(Node currentNode) {
-		// TODO Auto-generated method stub
-		return null;
+	private static Route parseRoute(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.RTE_NODE)) {
+			return null;
+		}
+		
+		Route route = new Route();
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.NAME_NODE:
+				route.setName(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.CMT_NODE:
+				route.setCmt(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.DESC_NODE:
+				route.setDesc(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.SRC_NODE:
+				route.setSrc(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.LINK_NODE:
+				Link link = parseLink(currentNode);
+				if (link != null) {
+					route.addLink(link);
+				}
+				break;
+			case GPXConstants.NUMBER_NODE:
+				route.setNumber(getIntegerFromNode(currentNode));
+				break;
+			case GPXConstants.TYPE_NODE:
+				route.setType(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.EXTENSIONS_NODE:
+				route.setExtensions(new Extensions(currentNode));
+				break;
+			case GPXConstants.RTEPT_NODE:
+				Waypoint waypoint = parseWaypoint(currentNode);
+				if (waypoint != null) {
+					route.addWaypoint(waypoint);
+				}
+				break;
+			}
+		}
+		
+		return route;
+	}
+
+	private static Metadata parseMetadata(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.METADATA_NODE)) {
+			return null;
+		}
+		
+		Metadata metadata = new Metadata();
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.NAME_NODE:
+				metadata.setName(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.DESC_NODE:
+				metadata.setDesc(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.AUTHOR_NODE:
+				Person author = parsePerson(currentNode);
+				if (author != null) {
+					metadata.setAuthor(author);
+				}
+				break;
+			case GPXConstants.COPYRIGHT_NODE:
+				Copyright copyright = parseCopyright(currentNode);
+				if (copyright != null) {
+					metadata.setCopyright(copyright);
+				}
+				break;
+			case GPXConstants.LINK_NODE:
+				Link link = parseLink(currentNode);
+				if (link != null) {
+					metadata.addLink(link);
+				}
+				break;
+			case GPXConstants.TIME_NODE:
+				try {
+					metadata.setTime(getDateFromNode(currentNode));
+				} catch (Exception e) {
+					throw new InvalidGPXException(e);
+				}
+				break;
+			case GPXConstants.KEYWORDS_NODE:
+				metadata.setKeywords(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.BOUNDS_NODE:
+				Bounds bounds = parseBounds(currentNode);
+				if (bounds != null) {
+					metadata.setBounds(bounds);
+				}
+				break;
+			case GPXConstants.EXTENSIONS_NODE:
+				metadata.setExtensions(new Extensions(currentNode));
+				break;
+			}
+		}
+		
+		return metadata;
+	}
+
+	private static Bounds parseBounds(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.BOUNDS_NODE)) {
+			return null;
+		}
+		
+		NamedNodeMap attrs = node.getAttributes();
+		Double minlat = null;
+		Double minlon = null;
+		Double maxlat = null;
+		Double maxlon = null;
+		
+		for (int i = 0; i < attrs.getLength(); i++) {
+			Node attr = attrs.item(i);
+			
+			if (GPXConstants.MINLAT_ATTR.equals(attr.getNodeName())) {
+				minlat = Double.parseDouble(attr.getNodeValue());
+			} else if (GPXConstants.MINLON_ATTR.equals(attr.getNodeName())) {
+				minlon = Double.parseDouble(attr.getNodeValue());
+			} else if (GPXConstants.MAXLAT_ATTR.equals(attr.getNodeName())) {
+				maxlat = Double.parseDouble(attr.getNodeValue());
+			} else if (GPXConstants.MAXLON_ATTR.equals(attr.getNodeName())) {
+				maxlon = Double.parseDouble(attr.getNodeValue());
+			}
+		}
+		
+		if (minlat == null || minlon == null || maxlat == null || maxlon == null) {
+			throw new InvalidGPXException("Invalid bounds set in GPX file");
+		}
+		
+		Bounds bounds = new Bounds(minlat, minlon, maxlat, maxlon);
+		
+		return bounds;
+	}
+
+	private static Copyright parseCopyright(Node node) throws InvalidGPXException {
+		if (!node.getNodeName().equals(GPXConstants.COPYRIGHT_NODE)) {
+			return null;
+		}
+		
+		NamedNodeMap attrs = node.getAttributes();
+		String author = null;
+		
+		for (int i = 0; i < attrs.getLength(); i++) {
+			Node attr = attrs.item(i);
+			
+			if (GPXConstants.AUTHOR_ATTR.equals(attr.getNodeName())) {
+				author = attr.getNodeValue();
+			}
+		}
+		
+		if (author == null) {
+			throw new InvalidGPXException("No author attached to the copyright in your metadata");
+		}
+		
+		Copyright copyright = new Copyright(author);
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.YEAR_NODE:
+				copyright.setYear(getIntegerFromNode(currentNode));
+				break;
+			case GPXConstants.LICENSE_NODE:
+				URI uri = URI.create(getStringFromNode(currentNode));
+				copyright.setLicense(uri);
+				break;
+			}
+		}
+		
+		return copyright;
+	}
+
+	private static Person parsePerson(Node node) throws InvalidGPXException {
+		Person person = new Person();
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.NAME_NODE:
+				person.setName(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.EMAIL_NODE:
+				Email email = parseEmail(currentNode);
+				if (email != null) {
+					person.setEmail(email);
+				}
+				break;
+			case GPXConstants.LINK_NODE:
+				Link link = parseLink(currentNode);
+				if (link != null) {
+					person.setLink(link);
+				}
+				break;
+			}
+		}
+		
+		return person;
+	}
+
+	private static Email parseEmail(Node node) throws InvalidGPXException {
+		/*
+		id="xsd:string [1] ?"
+		domain="xsd:string [1] ?"/>
+		 */
+		if (!node.getNodeName().equals(GPXConstants.EMAIL_NODE)) {
+			return null;
+		}
+		
+		NamedNodeMap attrs = node.getAttributes();
+		String id = null;
+		String domain = null;
+		
+		for (int i = 0; i < attrs.getLength(); i++) {
+			Node attr = attrs.item(i);
+			
+			if (GPXConstants.ID_ATTR.equals(attr.getNodeName())) {
+				id = getStringFromNode(attr);
+			} else if (GPXConstants.DOMAIN_ATTR.equals(attr.getNodeName())) {
+				domain = getStringFromNode(attr);
+			}
+		}
+		
+		if (id == null || domain == null) {
+			throw new InvalidGPXException("Invalid email in your GPX file");
+		}
+		
+		Email email = new Email(id, domain);
+		return email;
 	}
 
 	private static Waypoint parseWaypoint(Node node) throws InvalidGPXException{
+		if (!node.getNodeName().equals(GPXConstants.WPT_NODE)) {
+			return null;
+		}
 		
 		NamedNodeMap attrs = node.getAttributes();
 		Double lat = null;
@@ -214,9 +527,49 @@ public class GPXParser {
 		return waypoint;
 	}
 	
-	private static Link parseLink(Node currentNode) {
-		// TODO Auto-generated method stub
-		return null;
+	private static Link parseLink(Node node) throws InvalidGPXException {
+		/*
+		href="xsd:anyURI [1] ?"> 
+		<text> xsd:string </text> [0..1] ?
+		<type> xsd:string </type> [0..1] ?
+		 */
+		
+		if (!node.getNodeName().equals(GPXConstants.LINK_NODE)) {
+			return null;
+		}
+		
+		NamedNodeMap attrs = node.getAttributes();
+		URI href = null;
+		
+		for (int i = 0; i < attrs.getLength(); i++) {
+			Node attr = attrs.item(i);
+			
+			if (GPXConstants.HREF_ATTR.equals(attr.getNodeName())) {
+				href = URI.create(attr.getNodeValue());
+			}
+		}
+		
+		if (href == null) {
+			throw new InvalidGPXException("Invalid link somewhere in GPX file");
+		}
+		
+		Link link = new Link(href);
+		
+		NodeList nodes = node.getChildNodes();
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node currentNode = nodes.item(i);
+			
+			switch (currentNode.getNodeName()) {
+			case GPXConstants.TEXT_NODE:
+				link.setText(getStringFromNode(currentNode));
+				break;
+			case GPXConstants.TYPE_NODE:
+				link.setType(getStringFromNode(currentNode));
+				break;
+			}
+		}
+		
+		return link;
 	}
 
 	private static Date getDateFromNode(Node node) throws Exception {
