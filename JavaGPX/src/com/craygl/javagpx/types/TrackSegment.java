@@ -1,21 +1,22 @@
 package com.craygl.javagpx.types;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class TrackSegment {
 	
-	private HashSet<Waypoint> waypoints;
+	private ArrayList<Waypoint> waypoints;
 	private Extensions extensions;
 	
 	public TrackSegment() {
-		this.waypoints = new HashSet<Waypoint>();
+		this.waypoints = new ArrayList<Waypoint>();
 	}
 
-	public HashSet<Waypoint> getWaypoints() {
+	public ArrayList<Waypoint> getWaypoints() {
 		return waypoints;
 	}
 
-	public void setWaypoints(HashSet<Waypoint> waypoints) {
+	public void setWaypoints(ArrayList<Waypoint> waypoints) {
 		this.waypoints = waypoints;
 	}
 	

@@ -13,11 +13,11 @@ public class Track {
 	private Integer number;
 	private String type;
 	private Extensions extensions;
-	private HashSet<TrackSegment> trackSegments;
+	private ArrayList<TrackSegment> trackSegments;
 	
 	public Track() {
 		this.links = new ArrayList<Link>();
-		this.trackSegments = new HashSet<TrackSegment>();
+		this.trackSegments = new ArrayList<TrackSegment>();
 	}
 	
 	public String getName() {
@@ -80,11 +80,11 @@ public class Track {
 		this.type = type;
 	}
 
-	public HashSet<TrackSegment> getTrackSegments() {
+	public ArrayList<TrackSegment> getTrackSegments() {
 		return trackSegments;
 	}
 
-	public void setTrackSegments(HashSet<TrackSegment> trackSegments) {
+	public void setTrackSegments(ArrayList<TrackSegment> trackSegments) {
 		this.trackSegments = trackSegments;
 	}
 	

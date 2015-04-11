@@ -1,5 +1,6 @@
 package com.craygl.javagpx.types;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class GPX {
@@ -9,35 +10,35 @@ public class GPX {
 	
 	private Metadata metadata;
 	
-	private HashSet<Waypoint> waypoints;
-	private HashSet<Route> routes;
-	private HashSet<Track> tracks;
+	private ArrayList<Waypoint> waypoints;
+	private ArrayList<Route> routes;
+	private ArrayList<Track> tracks;
 	
 	private Extensions extensions;
 	
 	public GPX() {
-		this.waypoints = new HashSet<Waypoint>();
-		this.tracks = new HashSet<Track>();
-		this.routes = new HashSet<Route>();
+		this.waypoints = new ArrayList<Waypoint>();
+		this.tracks = new ArrayList<Track>();
+		this.routes = new ArrayList<Route>();
 	}
 	
 	public void addWaypoint(Waypoint wp) {
 		if (this.waypoints == null)
-			this.waypoints = new HashSet<Waypoint>();
+			this.waypoints = new ArrayList<Waypoint>();
 		
 		this.waypoints.add(wp);
 	}
 	
 	public void addRoute(Route route) {
 		if (this.routes == null)
-			this.routes = new HashSet<Route>();
+			this.routes = new ArrayList<Route>();
 		
 		this.routes.add(route);
 	}
 	
 	public void addTrack(Track track) {
 		if (this.tracks == null)
-			this.tracks = new HashSet<Track>();
+			this.tracks = new ArrayList<Track>();
 		
 		this.tracks.add(track);
 	}
@@ -56,15 +57,15 @@ public class GPX {
 		this.metadata = metadata;
 	}
 	
-	public void setWaypoints(HashSet<Waypoint> waypoints) {
+	public void setWaypoints(ArrayList<Waypoint> waypoints) {
 		this.waypoints = waypoints;
 	}
 	
-	public void setRoutes(HashSet<Route> routes) {
+	public void setRoutes(ArrayList<Route> routes) {
 		this.routes = routes;
 	}
 	
-	public void setTracks(HashSet<Track> tracks) {
+	public void setTracks(ArrayList<Track> tracks) {
 		this.tracks = tracks;
 	}
 	
@@ -82,15 +83,15 @@ public class GPX {
 		return metadata;
 	}
 	
-	public HashSet<Waypoint> getWaypoints() {
+	public ArrayList<Waypoint> getWaypoints() {
 		return waypoints;
 	}
 	
-	public HashSet<Route> getRoutes() {
+	public ArrayList<Route> getRoutes() {
 		return routes;
 	}
 	
-	public HashSet<Track> getTracks() {
+	public ArrayList<Track> getTracks() {
 		return tracks;
 	}
 	

@@ -13,11 +13,11 @@ public class Route {
 	private Integer number;
 	private String type;
 	private Extensions extensions;
-	private HashSet<Waypoint> waypoints;
+	private ArrayList<Waypoint> waypoints;
 	
 	public Route() {
 		this.links = new ArrayList<Link>();
-		this.waypoints = new HashSet<Waypoint>();
+		this.waypoints = new ArrayList<Waypoint>();
 	}
 
 	public String getName() {
@@ -80,11 +80,11 @@ public class Route {
 		this.type = type;
 	}
 
-	public HashSet<Waypoint> getWaypoints() {
+	public ArrayList<Waypoint> getWaypoints() {
 		return waypoints;
 	}
 
-	public void setWaypoints(HashSet<Waypoint> waypoints) {
+	public void setWaypoints(ArrayList<Waypoint> waypoints) {
 		this.waypoints = waypoints;
 	}
 	
