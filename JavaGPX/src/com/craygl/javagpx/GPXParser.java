@@ -569,46 +569,46 @@ public class GPXParser {
 	}
 
 	private static Date getDateFromNode(Node node) throws Exception {
-		if (node.getNodeValue() == null)
+		if (node.getFirstChild().getNodeValue() == null)
 			return null;
 		
 		Date val = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
-		val = sdf.parse(node.getNodeValue());
+		val = sdf.parse(node.getFirstChild().getNodeValue());
 		
 		return val;
 	}
 	
 	private static Double getDoubleFromNode(Node node) {
 		Double d = null;
-		if (node.getNodeValue() != null)
-			d = Double.parseDouble(node.getNodeValue());
+		if (node.getFirstChild().getNodeValue() != null)
+			d = Double.parseDouble(node.getFirstChild().getNodeValue());
 		
 		return d;
 	}
 	
 	private static Float getFloatFromNode(Node node) {
 		Float f = null;
-		if (node.getNodeValue() != null)
-			f = Float.parseFloat(node.getNodeValue());
+		if (node.getFirstChild().getNodeValue() != null)
+			f = Float.parseFloat(node.getFirstChild().getNodeValue());
 		
 		return f;
 	}
 
 	private static Fix getFixFromNode(Node node) {
-		return Fix.getTypeFromString(node.getNodeValue());
+		return Fix.getTypeFromString(node.getFirstChild().getNodeValue());
 	}
 
 	private static Integer getIntegerFromNode(Node node) {
 		Integer i = null;
-		if (node.getNodeValue() != null)
-			i = Integer.parseInt(node.getNodeValue());
+		if (node.getFirstChild().getNodeValue() != null)
+			i = Integer.parseInt(node.getFirstChild().getNodeValue());
 		
 		return i;
 	}
 
 	private static String getStringFromNode(Node node) {
-		return node.getNodeValue();
+		return node.getFirstChild().getNodeValue();
 	}
 
 }
