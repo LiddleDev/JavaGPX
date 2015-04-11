@@ -428,10 +428,6 @@ public class GPXParser {
 	}
 
 	private static Waypoint parseWaypoint(Node node) throws InvalidGPXException{
-		if (!node.getNodeName().equals(GPXConstants.WPT_NODE)) {
-			return null;
-		}
-		
 		NamedNodeMap attrs = node.getAttributes();
 		Double lat = null;
 		Double lon = null;
@@ -573,19 +569,30 @@ public class GPXParser {
 	}
 
 	private static Date getDateFromNode(Node node) throws Exception {
+		if (node.getNodeValue() == null)
+			return null;
+		
 		Date val = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss");
-		val = sdf.parse(node.getFirstChild().getNodeValue());
+		val = sdf.parse(node.getNodeValue());
 		
 		return val;
 	}
 	
 	private static Double getDoubleFromNode(Node node) {
-		return Double.parseDouble(node.getNodeValue());
+		Double d = null;
+		if (node.getNodeValue() != null)
+			d = Double.parseDouble(node.getNodeValue());
+		
+		return d;
 	}
 	
 	private static Float getFloatFromNode(Node node) {
-		return Float.parseFloat(node.getNodeValue());
+		Float f = null;
+		if (node.getNodeValue() != null)
+			f = Float.parseFloat(node.getNodeValue());
+		
+		return f;
 	}
 
 	private static Fix getFixFromNode(Node node) {
@@ -593,14 +600,14 @@ public class GPXParser {
 	}
 
 	private static Integer getIntegerFromNode(Node node) {
-		return Integer.parseInt(node.getFirstChild().getNodeValue());
+		Integer i = null;
+		if (node.getNodeValue() != null)
+			i = Integer.parseInt(node.getNodeValue());
+		
+		return i;
 	}
 
 	private static String getStringFromNode(Node node) {
-		if (node == null) {
-			return null;
-		}
-
 		return node.getNodeValue();
 	}
 
