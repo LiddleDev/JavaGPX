@@ -20,8 +20,8 @@ Printing the latitude and longitude of every waypoint in a GPX file with multipl
 		e.printStackTrace();
 	}
 	
-	HashSet<Waypoint> waypoints = new HashSet<Waypoint>();
-	HashSet<Track> tracks = gpx.getTracks();
+	ArrayList<Waypoint> waypoints = new ArrayList<Waypoint>();
+	ArrayList<Track> tracks = gpx.getTracks();
 	for (Track track : tracks) {
 		for (TrackSegment trackSegment : track.getTrackSegments()) {
 			for (Waypoint waypoint : trackSegment.getWaypoints()) {
