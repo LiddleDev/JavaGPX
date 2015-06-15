@@ -2,48 +2,48 @@ package com.craygl.javagpx.types;
 
 public class Bounds {
 
-	private Double minlat;
-	private Double minlon;
-	private Double maxlat;
-	private Double maxlon;
+	private double minimumLatitude;
+	private double minimumLongitude;
+	private double maximumLatitude;
+	private double maximumLongitude;
 	
-	public Bounds(double minlat, double minlon, double maxlat, double maxlon) {
-		this.minlat = minlat;
-		this.minlon = minlon;
-		this.maxlat = maxlat;
-		this.maxlon = maxlon;
+	public Bounds(double minimumLatitude, double minimumLongitude, double maximumLatitude, double maximumLongitude) {
+		this.minimumLatitude = minimumLatitude;
+		this.minimumLongitude = minimumLongitude;
+		this.maximumLatitude = maximumLatitude;
+		this.maximumLongitude = maximumLongitude;
 	}
 
-	public Double getMinlat() {
-		return minlat;
+	public double getMinimumLatitude() {
+		return minimumLatitude;
 	}
 
-	public void setMinlat(Double minlat) {
-		this.minlat = minlat;
+	public void setMinimumLatitude(double minimumLatitude) {
+		this.minimumLatitude = minimumLatitude;
 	}
 
-	public Double getMinlon() {
-		return minlon;
+	public double getMinimumLongitude() {
+		return minimumLongitude;
 	}
 
-	public void setMinlon(Double minlon) {
-		this.minlon = minlon;
+	public void setMinimumLongitude(double minimumLongitude) {
+		this.minimumLongitude = minimumLongitude;
 	}
 
-	public Double getMaxlat() {
-		return maxlat;
+	public double getMaximumLatitude() {
+		return maximumLatitude;
 	}
 
-	public void setMaxlat(Double maxlat) {
-		this.maxlat = maxlat;
+	public void setMaximumLatitude(double maximumLatitude) {
+		this.maximumLatitude = maximumLatitude;
 	}
 
-	public Double getMaxlon() {
-		return maxlon;
+	public double getMaximumLongitude() {
+		return maximumLongitude;
 	}
 
-	public void setMaxlon(Double maxlon) {
-		this.maxlon = maxlon;
+	public void setMaximumLongitude(double maximumLongitude) {
+		this.maximumLongitude = maximumLongitude;
 	}
 	
 	

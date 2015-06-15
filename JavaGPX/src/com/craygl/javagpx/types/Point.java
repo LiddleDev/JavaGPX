@@ -4,38 +4,38 @@ import java.util.Date;
 
 public class Point {
 	
-	private Double lat;
-	private Double lon;
-	private Float ele;
+	private double latitude;
+	private double longitude;
+	private double elevation;
 	private Date time;
 	
-	public Point(double lat, double lon) {
-		this.lat = lat;
-		this.lon = lon;
+	public Point(double latitude, double longitude) {
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
-	public Double getLat() {
-		return lat;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLat(Double lat) {
-		this.lat = lat;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public Double getLon() {
-		return lon;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLon(Double lon) {
-		this.lon = lon;
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
-	public Float getEle() {
-		return ele;
+	public double getElevation() {
+		return elevation;
 	}
 
-	public void setEle(Float ele) {
-		this.ele = ele;
+	public void setElevation(double elevation) {
+		this.elevation = elevation;
 	}
 
 	public Date getTime() {

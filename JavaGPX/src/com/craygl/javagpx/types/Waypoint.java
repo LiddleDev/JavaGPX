@@ -5,14 +5,14 @@ import java.util.Date;
 
 public class Waypoint {
 	
-	private Double lat;
-	private Double lon;
+	private double latitude;
+	private double longitude;
 	
-	private Float ele;
+	private double elevation;
 	private Date time;
-	private Float magvar;
+	private double magvar;
 	private String name;
-	private Float geoidheight;
+	private double geoidHeight;
 	private String cmt;
 	private String desc;
 	private String src;
@@ -20,43 +20,43 @@ public class Waypoint {
 	private String sym;
 	private String type;
 	private Fix fix;
-	private Integer sat;
-	private Float hdop;
-	private Float vdop;
-	private Float pdop;
-	private Float ageofgpsdata;
-	private Integer dgpsid;
+	private int sat;
+	private double hdop;
+	private double vdop;
+	private double pdop;
+	private double ageOfGPSData;
+	private int dgpsid;
 	private Extensions extensions;
 	
-	public Waypoint(double lat, double lon) {
-		this.lat = lat;
-		this.lon = lon;
+	public Waypoint(double latitude, double longitude) {
+		this.latitude = latitude;
+		this.longitude = longitude;
 		
 		this.links = new ArrayList<Link>();
 	}
 
-	public Double getLat() {
-		return lat;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLat(Double lat) {
-		this.lat = lat;
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
-	public Double getLon() {
-		return lon;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLon(Double lon) {
-		this.lon = lon;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
-	public Float getEle() {
-		return ele;
+	public double getElevation() {
+		return elevation;
 	}
 
-	public void setEle(Float ele) {
-		this.ele = ele;
+	public void setElevation(double elevation) {
+		this.elevation = elevation;
 	}
 
 	public Date getTime() {
@@ -67,11 +67,11 @@ public class Waypoint {
 		this.time = time;
 	}
 
-	public Float getMagvar() {
+	public double getMagvar() {
 		return magvar;
 	}
 
-	public void setMagvar(Float magvar) {
+	public void setMagvar(double magvar) {
 		this.magvar = magvar;
 	}
 
@@ -127,51 +127,51 @@ public class Waypoint {
 		this.sym = sym;
 	}
 
-	public Integer getSat() {
+	public int getSat() {
 		return sat;
 	}
 
-	public void setSat(Integer sat) {
+	public void setSat(int sat) {
 		this.sat = sat;
 	}
 
-	public Float getHdop() {
+	public double getHdop() {
 		return hdop;
 	}
 
-	public void setHdop(Float hdop) {
+	public void setHdop(double hdop) {
 		this.hdop = hdop;
 	}
 
-	public Float getVdop() {
+	public double getVdop() {
 		return vdop;
 	}
 
-	public void setVdop(Float vdop) {
+	public void setVdop(double vdop) {
 		this.vdop = vdop;
 	}
 
-	public Float getPdop() {
+	public double getPdop() {
 		return pdop;
 	}
 
-	public void setPdop(Float pdop) {
+	public void setPdop(double pdop) {
 		this.pdop = pdop;
 	}
 
-	public Float getAgeofgpsdata() {
-		return ageofgpsdata;
+	public double getAgeOfGPSData() {
+		return ageOfGPSData;
 	}
 
-	public void setAgeofgpsdata(Float ageofgpsdata) {
-		this.ageofgpsdata = ageofgpsdata;
+	public void setAgeOfGPSData(double ageOfGPSData) {
+		this.ageOfGPSData = ageOfGPSData;
 	}
 
-	public Integer getDgpsid() {
+	public int getDgpsid() {
 		return dgpsid;
 	}
 
-	public void setDgpsid(Integer dgpsid) {
+	public void setDgpsid(int dgpsid) {
 		this.dgpsid = dgpsid;
 	}
 	
@@ -183,12 +183,12 @@ public class Waypoint {
 		this.extensions = extensions;
 	}
 
-	public Float getGeoidheight() {
-		return geoidheight;
+	public double getGeoidHeight() {
+		return geoidHeight;
 	}
 
-	public void setGeoidheight(Float geoidheight) {
-		this.geoidheight = geoidheight;
+	public void setGeoidHeight(double geoidHeight) {
+		this.geoidHeight = geoidHeight;
 	}
 
 	public String getType() {

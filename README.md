@@ -1,6 +1,8 @@
 # JavaGPX
 
-A simple Java GPX parser with no external dependencies
+A simple Java GPX parser with no external dependencies.
+
+It is licensed under the MIT license, so you can use it in your projects.
 
 Example Usage:
 

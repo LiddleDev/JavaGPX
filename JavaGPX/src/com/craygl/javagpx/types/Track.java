@@ -10,7 +10,7 @@ public class Track {
 	private String desc;
 	private String src;
 	private ArrayList<Link> links;
-	private Integer number;
+	private int number;
 	private String type;
 	private Extensions extensions;
 	private ArrayList<TrackSegment> trackSegments;
@@ -64,11 +64,11 @@ public class Track {
 		this.links.add(link);
 	}
 
-	public Integer getNumber() {
+	public int getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 
