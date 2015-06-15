@@ -1,7 +1,6 @@
 package com.craygl.javagpx;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -10,13 +9,11 @@ import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.craygl.javagpx.types.*;
 
@@ -454,7 +451,7 @@ public class GPXParser {
 			
 			switch (currentNode.getNodeName()) {
 			case GPXConstants.ELE_NODE:
-				waypoint.setEle(getFloatFromNode(currentNode));
+				waypoint.setElevation(getFloatFromNode(currentNode));
 				break;
 			case GPXConstants.TIME_NODE:
 				try {
@@ -467,7 +464,7 @@ public class GPXParser {
 				waypoint.setMagvar(getFloatFromNode(currentNode));
 				break;
 			case GPXConstants.GEOIDHEIGHT_NODE:
-				waypoint.setGeoidheight(getFloatFromNode(currentNode));
+				waypoint.setGeoidHeight(getFloatFromNode(currentNode));
 				break;
 			case GPXConstants.NAME_NODE:
 				waypoint.setName(getStringFromNode(currentNode));
@@ -509,7 +506,7 @@ public class GPXParser {
 				waypoint.setPdop(getFloatFromNode(currentNode));
 				break;
 			case GPXConstants.AGEOFGPSDATA_NODE:
-				waypoint.setAgeofgpsdata(getFloatFromNode(currentNode));
+				waypoint.setAgeOfGPSData(getFloatFromNode(currentNode));
 				break;
 			case GPXConstants.DGPSID_NODE:
 				waypoint.setDgpsid(getIntegerFromNode(currentNode));
